@@ -1,15 +1,28 @@
 function getFahrenheits(result){
-  // Your code goes here
+  return result.hourly_forecast.map(function(data) {
+    return data.temp.english
+  })
 }
 
 function getHours(result){
-  // Your code goes here
+  return result.hourly_forecast.map(function(data) {
+    return data.FCTTIME.hour
+  })
 }
 
 function generateDataSet(labels, data) {
-  // Your code goes here
+  let myData = {
+    labels: labels,
+    datasets: [{
+      data:data
+    }]
+  }
+  return myData
 }
 
 function makeRequest(endpoint, success) {
-  // Your code goes here
+  fetch(endpoint)
+    .then(res => res.json())
+    .then(json => success(json))
+
 }
